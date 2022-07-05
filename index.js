@@ -58,7 +58,6 @@ window.addEventListener("load",()=>{
         ctx.drawImage(fistImg, 0, 0);
     }
     setInterval(()=>{
-        console.log(currentPos < layerList.length, currentPos,layerList.length )
         if(currentPos < layerList.length - 1){
             currentPos++;
             currentLayer = layerList[currentPos]
@@ -67,7 +66,7 @@ window.addEventListener("load",()=>{
             currentPos = 0
             currentLayer = layerList[0]
         }
-    },3 * 1000)
+    }, 500)
                         
     function readyToPlayVideo(event){ // this is a referance to the video
         // the video may not match the canvas size so find a scale to fit
