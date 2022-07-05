@@ -16,6 +16,9 @@ window.addEventListener("load",()=>{
     const ctx = canvas.getContext("2d")
     let videoContainer
     
+    
+    //https://riptutorial.com/html5-canvas/example/14974/basic-loading-and-playing-a-video-on-the-canvas-
+    //https://developer.chrome.com/blog/autoplay/
     let video = document.createElement("video"); // create a video element
     
     video.src = "./1651756907919.webm"; 
