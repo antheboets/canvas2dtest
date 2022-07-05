@@ -18,7 +18,7 @@ window.addEventListener("load",()=>{
     
     
     //https://riptutorial.com/html5-canvas/example/14974/basic-loading-and-playing-a-video-on-the-canvas-
-    //https://developer.chrome.com/blog/autoplay/
+    //
     let video = document.createElement("video"); // create a video element
     
     video.src = "./1651756907919.webm"; 
@@ -58,11 +58,11 @@ window.addEventListener("load",()=>{
         // only draw if loaded and ready
         if(videoContainer !== undefined && videoContainer.ready){ 
             // find the top left of the video on the canvas
-            var scale = videoContainer.scale;
-            var vidH = videoContainer.video.videoHeight;
-            var vidW = videoContainer.video.videoWidth;
-            var top = canvas.height / 2 - (vidH /2 ) * scale;
-            var left = canvas.width / 2 - (vidW /2 ) * scale;
+            let scale = videoContainer.scale;
+            let vidH = videoContainer.video.videoHeight;
+            let vidW = videoContainer.video.videoWidth;
+            let top = canvas.height / 2 - (vidH /2 ) * scale;
+            let left = canvas.width / 2 - (vidW /2 ) * scale;
             // now just draw the video the correct size
             ctx.drawImage(videoContainer.video, left, top, vidW * scale, vidH * scale);
             if(videoContainer.video.paused){ // if not playing show the paused screen 
@@ -80,7 +80,7 @@ window.addEventListener("load",()=>{
         ctx.fillStyle = "#DDD"; // colour of play icon
         ctx.globalAlpha = 0.75; // partly transparent
         ctx.beginPath(); // create the path for the icon
-        var size = (canvas.height / 2) * 0.5;  // the size of the icon
+        let size = (canvas.height / 2) * 0.5;  // the size of the icon
         ctx.moveTo(canvas.width/2 + size/2, canvas.height / 2); // start at the pointy end
         ctx.lineTo(canvas.width/2 - size/2, canvas.height / 2 + size);
         ctx.lineTo(canvas.width/2 - size/2, canvas.height / 2 - size);
@@ -89,15 +89,16 @@ window.addEventListener("load",()=>{
         ctx.globalAlpha = 1; // restore alpha
    }  
    function playPauseClick(){
-    if(videoContainer !== undefined && videoContainer.ready){
-         if(videoContainer.video.paused){                                 
-               videoContainer.video.play();
-         }else{
-               videoContainer.video.pause();
-         }
+        if(videoContainer !== undefined && videoContainer.ready){
+            if(videoContainer.video.paused){                                 
+                videoContainer.video.play();
+            }
+            else{
+                videoContainer.video.pause();
+            }
+        }
     }
-}
-// register the event
-canvas.addEventListener("click",playPauseClick);
+    // register the event
+    canvas.addEventListener("click",playPauseClick);
 
 })
