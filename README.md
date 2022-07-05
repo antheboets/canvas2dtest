@@ -1,0 +1,1 @@
+idk just open the index.html file
