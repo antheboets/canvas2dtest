@@ -111,32 +111,4 @@ window.addEventListener("load",()=>{
         // request the next frame in 1/60th of a second
         requestAnimationFrame(updateCanvas);
     }
-    function drawPayIcon(){
-        ctx.fillStyle = "black";  // darken display
-        ctx.globalAlpha = 0.5;
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.fillStyle = "#DDD"; // colour of play icon
-        ctx.globalAlpha = 0.75; // partly transparent
-        ctx.beginPath(); // create the path for the icon
-        let size = (canvas.height / 2) * 0.5;  // the size of the icon
-        ctx.moveTo(canvas.width/2 + size/2, canvas.height / 2); // start at the pointy end
-        ctx.lineTo(canvas.width/2 - size/2, canvas.height / 2 + size);
-        ctx.lineTo(canvas.width/2 - size/2, canvas.height / 2 - size);
-        ctx.closePath();
-        ctx.fill();
-        ctx.globalAlpha = 1; // restore alpha
-   }  
-   function playPauseClick(){
-        if(videoContainer !== undefined && videoContainer.ready){
-            if(videoContainer.video.paused){                                 
-                videoContainer.video.play();
-            }
-            else{
-                videoContainer.video.pause();
-            }
-        }
-    }
-    // register the event
-    canvas.addEventListener("click",playPauseClick);
-
 })
