@@ -35,8 +35,40 @@ window.addEventListener("load",()=>{
     };
     
     video.oncanplay = readyToPlayVideo; // set the event to the play function that 
-                                  // can be found below
+    // can be found below
+    let fistImg = new Image()
+    fistImg.src = "./henri.png"
 
+    let layerList = []
+    layerList.push(new Image())
+    layerList.push(new Image())
+    layerList.push(new Image())
+
+    layerList[0].src = "./layer1.png"
+    layerList[1].src = "./layer2.png"
+    layerList[2].src = "./layer3.png"
+
+    let currentLayer= null;
+    let currentPos = 0;
+    layerList[0].onload = () =>{
+        currentLayer = layerList[0]
+    }
+
+    fistImg.onload = ()=>{
+        ctx.drawImage(fistImg, 0, 0);
+    }
+    setInterval(()=>{
+        console.log(currentPos < layerList.length, currentPos,layerList.length )
+        if(currentPos < layerList.length - 1){
+            currentPos++;
+            currentLayer = layerList[currentPos]
+        }
+        else{
+            currentPos = 0
+            currentLayer = layerList[0]
+        }
+    },3 * 1000)
+                        
     function readyToPlayVideo(event){ // this is a referance to the video
         // the video may not match the canvas size so find a scale to fit
         videoContainer.scale = Math.min(
@@ -61,10 +93,16 @@ window.addEventListener("load",()=>{
             let scale = videoContainer.scale;
             let vidH = videoContainer.video.videoHeight;
             let vidW = videoContainer.video.videoWidth;
+            let frIH = fistImg.height - 20
+            let frIW = fistImg.width - 20
             let top = canvas.height / 2 - (vidH /2 ) * scale;
             let left = canvas.width / 2 - (vidW /2 ) * scale;
             // now just draw the video the correct size
             ctx.drawImage(videoContainer.video, left, top, vidW * scale, vidH * scale);
+            ctx.drawImage(fistImg,left, top, frIW * scale, frIH * scale );
+            if(currentLayer !== null){
+                ctx.drawImage(currentLayer, left, top, vidW * scale, vidH * scale)
+            }
             if(videoContainer.video.paused){ // if not playing show the paused screen 
                 drawPayIcon();
             }
