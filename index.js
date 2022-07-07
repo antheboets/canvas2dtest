@@ -77,9 +77,7 @@ window.addEventListener("load",()=>{
         videoContainer.video.play();
         // the video can be played so hand it off to the display function
         requestAnimationFrame(updateCanvas);
-        
     }
-
 
     function updateCanvas(){
         ctx.clearRect(0,0,canvas.width,canvas.height); // Though not always needed 
@@ -88,19 +86,11 @@ window.addEventListener("load",()=>{
                                                          // safe
         // only draw if loaded and ready
         if(videoContainer !== undefined && videoContainer.ready){ 
-            // find the top left of the video on the canvas
-            let scale = videoContainer.scale;
-            let vidH = videoContainer.video.videoHeight;
-            let vidW = videoContainer.video.videoWidth;
-            let frIH = fistImg.height - 20
-            let frIW = fistImg.width - 20
-            let top = canvas.height / 2 - (vidH /2 ) * scale;
-            let left = canvas.width / 2 - (vidW /2 ) * scale;
             // now just draw the video the correct size
-            ctx.drawImage(videoContainer.video, left, top, vidW * scale, vidH * scale);
-            ctx.drawImage(fistImg,left, top, frIW * scale, frIH * scale );
+            ctx.drawImage(videoContainer.video, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(fistImg, 0, 0, window.innerWidth * 0.3, window.innerHeight * 0.8);
             if(currentLayer !== null){
-                ctx.drawImage(currentLayer, left, top, vidW * scale, vidH * scale)
+                ctx.drawImage(currentLayer, 0, 0, canvas.width, canvas.height);
             }
             if(videoContainer.video.paused){ // if not playing show the paused screen 
                 drawPayIcon();
